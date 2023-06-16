@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h5 class="modal-title mt-0">{{id > 0 ? "Edit" : "Add" }} Mobile</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-hidden="true"
+    (click)="modal.close('Cross click')"
+  ></button>
+</div>
+<div class="modal-body" [formGroup]="mobileForm">
+  <div class="row">
+    <div class="col-12 mb-2">
+      <label for="make" class="mb-1">Make</label>
+      <input type="text" class="form-control" id="make" formControlName="make" placeholder="Make" />
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-12">
+      <label for="model" class="mb-1">Model</label>
+      <input type="text" class="form-control" id="model" formControlName="model" placeholder="Model" />
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col">
+      <label for="color" class="mb-1">Color</label>
+      <input type="text" class="form-control" id="color" formControlName="color" placeholder="Color" />
+    </div>
+    <div class="col">
+      <label for="price" class="mb-1">Price</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">$</span>
+        </div>
+        <input type="text" class="form-control" id="price" formControlName="price" placeholder="0.00" />
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row mb-2">
+    <div class="col">
+      <label for="price" class="mb-1">Price</label>
+      <input type="text" class="form-control" id="price" placeholder="$0.00" />
+    </div>
+  </div> -->
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-light"
+    (click)="modal.close('Close click')"
+  >
+    Close
+  </button>
+  <button type="button" class="btn btn-primary" (click)="update()">
+    {{ id > 0 ? "Update" : "Add" }}
+  </button>
+</div>

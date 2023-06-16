@@ -1,0 +1,206 @@
+<div class="row mt-1 mb-n4">
+  <div class="col text-end">
+    <button class="btn btn-danger btn-sm" (click)="logout()">logout</button>
+    <!-- <i class="fa fa-american-sign-language-interpreting fa-5x" aria-hidden="true"> </i> -->
+  </div>
+</div>
+<div class="container mt-n3">
+  <div class="row">
+    <div class="col-xl-3 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <div class="d-flex mb-3">
+            <div class="flex-grow-1">
+              <h5 class="fs-16">Filters</h5>
+            </div>
+            <div class="flex-shrink-0">
+              <a href="javascript:void(0);" class="text-decoration-underline"
+                >Clear All</a
+              >
+            </div>
+          </div>
+
+          <!-- <div class="filter-choices-input">
+
+              </div> -->
+        </div>
+
+        <div class="accordion accordion-flush">
+          <div class="card-body border-bottom">
+            <div>
+              <p class="text-muted text-uppercase fs-12 fw-medium mb-2">Make</p>
+
+              <ul class="pl-0" style="padding-left: 0px">
+                <li
+                  class="list-group-item"
+                  style="cursor: pointer"
+                  *ngFor="let item of makeList"
+                  [ngClass]="{ active: item.make === brandSelected }"
+                  (click)="brandSelected = item.make"
+                >
+                  {{ item.make }}
+                </li>
+              </ul>
+            </div>
+
+
+            <div>
+              <p class="text-muted text-uppercase fs-12 fw-medium mb-2">Color</p>
+
+              <ul class="pl-0" style="padding-left: 0px">
+                <li
+                  class="list-group-item"
+                  style="cursor: pointer"
+                  *ngFor="let item of colorList"
+                  [ngClass]="{ active: item.color === colorSelected }"
+                  (click)="colorSelected = item.color"
+                >
+                  {{ item.color }}
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="card-body border-bottom">
+            <p class="text-muted text-uppercase fs-12 fw-medium mb-4">Price</p>
+            <ngx-slider
+              [(value)]="value"
+              [(highValue)]="highValue"
+              [options]="options"
+            ></ngx-slider>
+          </div>
+
+          <!-- end accordion-item -->
+        </div>
+      </div>
+      <!-- end card -->
+    </div>
+    <!-- end col -->
+
+    <div class="col-xl-9 col-lg-8">
+      <div>
+        <div class="card">
+          <div class="card-header border-0">
+            <div class="row g-4">
+              <div class="col-sm-auto">
+                <div>
+                  <a class="btn btn-success" (click)="manageMobile(0, {})">
+                    Add Mobile</a
+                  >
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="d-flex justify-content-sm-end">
+                  <div class="search-box ms-2">
+                    <input
+                      type="text"
+                      name="searchTerm"
+                      class="form-control"
+                      placeholder="Search..."
+                      [(ngModel)]="searchTerm"
+                    />
+                    <i class="ri-search-line search-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+                <!-- Nav tabs -->
+
+                <div class="mt-">
+                  <div class="table-card gridjs-border-none">
+                    <div class="table-responsive">
+                      <table class="table align-middle">
+                        <thead>
+                          <tr class="bg-light text-muted">
+                            <th scope="col">#</th>
+                            <th
+                              style="cursor: pointer"
+                              (click)="sortList('make')"
+                            >
+                              Make
+                              <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </th>
+                            <th
+                              style="cursor: pointer"
+                              (click)="sortList('model')"
+                            >
+                              Model
+                              <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </th>
+
+                            <th
+                              style="cursor: pointer"
+                              (click)="sortList('color')"
+                            >
+                              Color
+                              <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </th>
+                            <th
+                              style="cursor: pointer"
+                              (click)="sortList('price')"
+                            >
+                              Price
+                              <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </th>
+
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="
+                              let data of mobileList | filter : searchTerm;
+                              let i = index
+                            "
+                          >
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ data.make }}</td>
+                            <td>{{ data.model }}</td>
+                            <td>{{ data.color }}</td>
+                            <td>{{ data.price | currency }}</td>
+                            <td class="d-flex gap-2">
+                              <button
+                                class="btn btn-primary btn-sm"
+                                (click)="manageMobile(data.id, data)"
+                              >
+                                Edit
+                              </button>
+                              <button
+                                class="btn btn-danger btn-sm"
+                                (click)="deleteMobile(data.id, i)"
+                              >
+                                Remove
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tab panes -->
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col text-center">
+                <pagination-controls
+                  (pageChange)="q = $event"
+                ></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end card -->
+      </div>
+    </div>
+    <!-- end col -->
+  </div>
+</div>
